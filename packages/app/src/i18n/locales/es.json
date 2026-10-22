@@ -319,7 +319,11 @@
     "deleteComment": "Eliminar comentario",
     "replyPlaceholder": "Responder…",
     "resolve": "Resolver",
-    "ownPrCommentOnly": "No puedes aprobar ni solicitar cambios en tus propias pull requests."
+    "ownPrCommentOnly": "No puedes aprobar ni solicitar cambios en tus propias pull requests.",
+    "sendToAgent": "Enviar al agente",
+    "copyForAgent": "Copiar para el agente",
+    "agentSummaryPlaceholder": "Algo más para el agente (opcional)",
+    "agentHint": "Copia tus comentarios pendientes como un prompt. Pégalo en el agente que escribió estos cambios."
   },
   "chat": {
     "title": "Preguntar sobre este PR",
@@ -426,7 +430,8 @@
     "diffNotLoaded": "El diff aún no ha terminado de cargarse.",
     "noViewer": "No se pudo determinar el usuario de GitHub de este token.",
     "tokenRejected": "GitHub rechazó este token (401). Comprueba que se pegó completo y que no ha sido revocado.",
-    "tooLarge": "El análisis es demasiado grande para compartirlo como comentario ({n} caracteres)."
+    "tooLarge": "El análisis es demasiado grande para compartirlo como comentario ({n} caracteres).",
+    "commentGone": "Este comentario ya no existe. Recarga para ver los comentarios actuales."
   },
   "local": {
     "loading": "Cargando cambios locales…",

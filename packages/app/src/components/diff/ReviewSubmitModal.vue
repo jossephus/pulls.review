@@ -25,6 +25,8 @@ const busy = ref(false)
 const error = ref<string>()
 
 const { t } = useI18n()
+// The comments go to the agent that wrote the diff: no verdict, nothing posted.
+const toAgent = computed(() => props.reviews.audience === 'agent')
 const isOwnPr = computed(() => !!props.authorLogin && !!props.reviews.viewerLogin
   && props.authorLogin.toLowerCase() === props.reviews.viewerLogin.toLowerCase())
 watch(isOwnPr, (own) => {
@@ -57,7 +59,7 @@ async function run(action: () => Promise<void>) {
 
 <template>
   <AppModal
-    :title="$t('review.reviewChanges')"
+    :title="$t(toAgent ? 'review.sendToAgent' : 'review.reviewChanges')"
     :open="open"
     :document="document"
     @update:open="emit('update:open', $event)"
@@ -69,7 +71,7 @@ async function run(action: () => Promise<void>) {
       <FormTextarea
         v-model="body"
         :rows="4"
-        :placeholder="$t('review.summaryPlaceholder')"
+        :placeholder="$t(toAgent ? 'review.agentSummaryPlaceholder' : 'review.summaryPlaceholder')"
         :disabled="busy"
         :invalid="!!error"
       />
@@ -79,13 +81,14 @@ async function run(action: () => Promise<void>) {
       </p>
       <div class="flex flex-wrap items-center justify-end gap-2">
         <ActionToggleGroup
+          v-if="!toAgent"
           :model-value="verdict"
           :options="verdictOptions"
           @update:model-value="value => { if (value) verdict = value as ReviewVerdict }"
         />
         <div class="flex-auto" />
         <ActionButton
-          v-if="reviews.pendingReview"
+          v-if="reviews.pendingReview && (!toAgent || reviews.pendingCommentCount > 0)"
           variant="text"
           class="text-red-600 dark:text-red-400"
           :disabled="busy"
@@ -101,10 +104,13 @@ async function run(action: () => Promise<void>) {
           :disabled="verdict !== 'APPROVE' && !body.trim() && reviews.pendingCommentCount === 0"
           @click="run(() => props.reviews.submitReview(verdict, body))"
         >
-          {{ $t('common.submit') }}
+          {{ $t(toAgent ? 'review.copyForAgent' : 'common.submit') }}
         </ActionButton>
       </div>
-      <p v-if="isOwnPr" class="text-xs color-muted">
+      <p v-if="toAgent" class="text-xs color-muted">
+        {{ $t('review.agentHint') }}
+      </p>
+      <p v-else-if="isOwnPr" class="text-xs color-muted">
         {{ $t('review.ownPrCommentOnly') }}
       </p>
     </div>

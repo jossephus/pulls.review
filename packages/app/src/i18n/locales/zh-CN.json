@@ -319,7 +319,11 @@
     "deleteComment": "删除评论",
     "replyPlaceholder": "回复…",
     "resolve": "标记为已解决",
-    "ownPrCommentOnly": "你不能批准自己的拉取请求，也不能对其请求更改。"
+    "ownPrCommentOnly": "你不能批准自己的拉取请求，也不能对其请求更改。",
+    "sendToAgent": "发送给智能体",
+    "copyForAgent": "复制给智能体",
+    "agentSummaryPlaceholder": "给智能体的其他说明（可选）",
+    "agentHint": "将你的待处理评论复制为提示词。请粘贴到编写这些更改的智能体中。"
   },
   "chat": {
     "title": "询问此 PR",
@@ -426,7 +430,8 @@
     "diffNotLoaded": "diff 尚未加载完成。",
     "noViewer": "无法确定此 token 对应的 GitHub 用户。",
     "tokenRejected": "GitHub 拒绝了此 token（401）。请检查是否完整粘贴且未被撤销。",
-    "tooLarge": "分析内容过大，无法作为评论分享（{n} 个字符）。"
+    "tooLarge": "分析内容过大，无法作为评论分享（{n} 个字符）。",
+    "commentGone": "此评论已不存在。请重新加载以查看当前评论。"
   },
   "local": {
     "loading": "正在加载本地更改…",

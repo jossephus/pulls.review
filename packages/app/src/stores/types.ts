@@ -46,6 +46,8 @@ export interface DiffsStoreLlm {
  * the user's own credentials; every mutation refetches so the view always reflects the source.
  */
 export interface DiffsStoreReviews {
+  /** `agent`: submitting hands the comments to a coding agent instead of posting a review (`ReviewsApi.audience`). */
+  readonly audience?: 'agent'
   readonly threads: CommentThread[]
   readonly summaries: ReviewSummary[]
   /** The viewer's unsubmitted review; new comments attach to it while it exists. */

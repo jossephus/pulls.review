@@ -319,7 +319,11 @@
     "editComment": "Edit comment",
     "deleteComment": "Delete comment",
     "replyPlaceholder": "Reply…",
-    "resolve": "Resolve"
+    "resolve": "Resolve",
+    "sendToAgent": "Send to agent",
+    "copyForAgent": "Copy for agent",
+    "agentSummaryPlaceholder": "Anything else for the agent (optional)",
+    "agentHint": "Copies your pending comments as a prompt. Paste it into the agent that wrote these changes."
   },
   "chat": {
     "title": "Ask about this PR",
@@ -435,7 +439,8 @@
     "diffNotLoaded": "The diff has not finished loading yet.",
     "noViewer": "Could not determine the GitHub user of this token.",
     "tokenRejected": "GitHub rejected this token (401). Check that it was pasted completely and has not been revoked.",
-    "tooLarge": "The analysis is too large to share as a comment ({n} characters)."
+    "tooLarge": "The analysis is too large to share as a comment ({n} characters).",
+    "commentGone": "This comment no longer exists. Reload to see the current comments."
   },
   "local": {
     "loading": "Loading local changes…",

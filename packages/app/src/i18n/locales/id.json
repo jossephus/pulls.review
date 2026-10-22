@@ -319,7 +319,11 @@
     "deleteComment": "Hapus komentar",
     "replyPlaceholder": "Balas…",
     "resolve": "Selesaikan",
-    "ownPrCommentOnly": "Anda tidak dapat menyetujui atau meminta perubahan pada pull request Anda sendiri."
+    "ownPrCommentOnly": "Anda tidak dapat menyetujui atau meminta perubahan pada pull request Anda sendiri.",
+    "sendToAgent": "Kirim ke agen",
+    "copyForAgent": "Salin untuk agen",
+    "agentSummaryPlaceholder": "Hal lain untuk agen (opsional)",
+    "agentHint": "Menyalin komentar tertunda Anda sebagai prompt. Tempelkan ke agen yang menulis perubahan ini."
   },
   "chat": {
     "title": "Tanya tentang PR ini",
@@ -426,7 +430,8 @@
     "diffNotLoaded": "Diff belum selesai dimuat.",
     "noViewer": "Pengguna GitHub untuk token ini tidak dapat ditentukan.",
     "tokenRejected": "GitHub menolak token ini (401). Pastikan token ditempel lengkap dan belum dicabut.",
-    "tooLarge": "Analisis terlalu besar untuk dibagikan sebagai komentar ({n} karakter)."
+    "tooLarge": "Analisis terlalu besar untuk dibagikan sebagai komentar ({n} karakter).",
+    "commentGone": "Komentar ini sudah tidak ada. Muat ulang untuk melihat komentar terbaru."
   },
   "local": {
     "loading": "Memuat perubahan lokal…",
