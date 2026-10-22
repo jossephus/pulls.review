@@ -20,6 +20,9 @@ packages:
   - packages/*
 
 overrides:
+  # 1.6.0 calls `createThemeResolver({ fallbackLoader })`, which no released
+  # @pierre/theming supports yet, so no theme loads and diffs render blank.
+  '@pierre/diffs': 1.5.2
   # Force a single @unocss/core across the tree (e.g. @antfu/design's own nested
   # copy) - a duplicate at a different version is a structural TS type mismatch
   # in uno.config.ts's `presets` array, not just a wasted install.
@@ -33,6 +36,7 @@ overrides:
 
 allowBuilds:
   '@google/genai': false
+  electron: true
   esbuild: true
   protobufjs: false
   unrs-resolver: true
@@ -55,6 +59,8 @@ catalogs:
     unocss: ^66.11.0
     unplugin: ^3.4.0
     vite: ^8.3.4
+  desktop:
+    electron: ^45.0.0
   dev:
     '@antfu/eslint-config': ^9.5.1
     '@types/node': ^26.6.5

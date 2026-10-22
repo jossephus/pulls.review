@@ -1,0 +1,45 @@
+{
+  "name": "@pulls.review/desktop",
+  "type": "module",
+  "version": "0.3.4",
+  "private": true,
+  "description": "Review local git changes in a desktop window instead of the browser.",
+  "license": "MIT",
+  "main": "./dist/main/main.mjs",
+  "bin": {
+    "yadv": "./bin/yadv.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsdown && vite build && node scripts/bundle.mjs",
+    "dev": "pnpm run build && node bin/yadv.mjs",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "devframe": "catalog:frontend",
+    "electron": "catalog:desktop",
+    "h3": "catalog:frontend",
+    "pulls.review": "workspace:*"
+  },
+  "devDependencies": {
+    "@antfu/design": "catalog:frontend",
+    "@iconify-json/ph": "catalog:icons",
+    "@pulls.review/core": "workspace:^",
+    "@types/node": "catalog:dev",
+    "@unocss/reset": "catalog:build",
+    "@vitejs/plugin-vue": "catalog:build",
+    "@vueuse/core": "catalog:frontend",
+    "fzf": "catalog:frontend",
+    "reka-ui": "catalog:frontend",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:dev",
+    "unocss": "catalog:build",
+    "vite": "catalog:build",
+    "vue": "catalog:frontend",
+    "vue-afloat": "catalog:frontend",
+    "vue-tsc": "catalog:dev"
+  },
+  "productName": "yadv"
+}
