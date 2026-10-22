@@ -1,9 +1,11 @@
+import type { CacheRepositories } from '@pulls.review/core/cache'
 import type { Credentials, DiffSource } from '@pulls.review/core/types'
 import type { Driver } from 'unstorage'
 import type { LocalRpc } from './connection'
 import { LOCAL_RPC } from '@pulls.review/core/local-rpc'
 import { DiffsPayloadSchema } from '@pulls.review/core/types'
 import * as v from 'valibot'
+import { createLocalReviews, LOCAL_VIEWER } from './local-reviews'
 
 /** The server's cache directory as an unstorage driver: the browser's `CacheRepositories` run on it unchanged. */
 export function createRpcDriver(rpc: LocalRpc): Driver {
@@ -32,12 +34,18 @@ export function createRpcCredentials(rpc: LocalRpc, fallback: Credentials): Cred
   }
 }
 
-/** A local diff, run by the server's `git`. Its target may still be resolving (a branch's base). */
-export function createRpcSource(rpc: LocalRpc, pending: Promise<string>): DiffSource {
+/**
+ * A local diff, run by the server's `git`. Its target may still be resolving (a branch's base).
+ * Review comments stay in `cache`, for the agent that wrote the diff (`local-reviews.ts`).
+ */
+export function createRpcSource(rpc: LocalRpc, pending: Promise<string>, cache: CacheRepositories): DiffSource {
+  const key = async () => v.parse(v.string(), await rpc.call(LOCAL_RPC.sourceKey, { target: await pending }))
   return {
-    key: async () => v.parse(v.string(), await rpc.call(LOCAL_RPC.sourceKey, { target: await pending })),
+    key,
     fetch: async () => v.parse(DiffsPayloadSchema, await rpc.call(LOCAL_RPC.sourceFetch, { target: await pending })),
     fingerprint: async () => v.parse(v.string(), await rpc.call(LOCAL_RPC.sourceFingerprint, { target: await pending })),
     loadFile: async (path, sha) => v.parse(v.optional(v.string()), await rpc.call(LOCAL_RPC.sourceLoadFile, { target: await pending, path, sha }) ?? undefined),
+    viewer: async () => LOCAL_VIEWER,
+    reviews: createLocalReviews(rpc, cache, key),
   }
 }

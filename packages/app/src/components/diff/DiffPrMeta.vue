@@ -41,6 +41,7 @@ const progressModalOpen = ref(false)
     <DiffReviewButton
       v-if="reviews?.canWrite"
       :pending-comment-count="reviews.pendingCommentCount"
+      :to-agent="reviews.audience === 'agent'"
       @review="reviewModalOpen = true"
     />
 

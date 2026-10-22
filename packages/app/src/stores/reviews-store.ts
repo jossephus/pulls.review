@@ -76,6 +76,7 @@ export function createReviewsStore(api: ReviewsApi, opts: ReviewsStoreOptions): 
   }
 
   return reactive({
+    audience: api.audience,
     threads: computed(() => data.value.threads),
     summaries: computed(() => data.value.summaries),
     pendingReview: computed(() => data.value.pendingReview),

@@ -20,8 +20,8 @@ const rpc = inject(localRpcKey)!
 const { cache, llm } = useAppContext()
 
 // Read once: another page is another path, which remounts this one.
-const parent = createDiffsStore(createRpcSource(rpc, targetFor(props.page, rpc)), { cache, llm })
-const { store, commitNav, selected } = useCommitView(parent, sha => createRpcSource(rpc, Promise.resolve(sha)), { cache, llm })
+const parent = createDiffsStore(createRpcSource(rpc, targetFor(props.page, rpc), cache), { cache, llm })
+const { store, commitNav, selected } = useCommitView(parent, sha => createRpcSource(rpc, Promise.resolve(sha), cache), { cache, llm })
 
 useDocumentTitle(() => store.value.diff?.title ?? routeForPage(props.page))
 

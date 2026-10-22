@@ -85,6 +85,11 @@ export interface Viewer {
  * Writes throw the `writeForbidden` diagnostic when the credentials may not write here.
  */
 export interface ReviewsApi {
+  /**
+   * Who reads a submitted review. `agent`: the coding agent that wrote the diff, as a prompt -
+   * nothing is posted, so there are no verdicts. Absent: the code host's reviewers.
+   */
+  audience?: 'agent'
   fetch: () => Promise<ReviewData>
   /** `single` posts at once; `review` starts the viewer's pending review, or adds to `pendingReview` when given. */
   addComment: (input: { target: ReviewDraftTarget, body: string, mode: 'single' | 'review', headSha: string, pendingReview?: { nodeId: string } }) => Promise<void>
